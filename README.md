@@ -11,35 +11,45 @@ This project helps you solve it by uploading Sudoku image.
 - Numpy
 - Matplotlib
 
+
 # Features
 
 Input Image
+
 ![out0](./result/0.jpg)
 
 After MorphologyEx
+
 ![out1](./result/1.PNG)
 
 After Normalization
+
 ![out2](./result/2.PNG)
 
 Adaptive Threshold
+
 ![out3](./result/3.PNG)
 
 Find Contours
+
 ![out4](./result/4.PNG)
 
 Masked
+
 ![out5](./result/5.PNG)
 
 Find grid by using Sobel, MorphologyEx and find Contours
+
 ![out6](./result/6.PNG)
 ![out7](./result/7.PNG)
 
 Flatten Image by using warpPerspective()
+
 ![out8](./result/8.PNG)
 ![out9](./result/9.PNG)
 
 Crop Cell Numbers
+
 ![out10](./result/10.PNG)
 
 Model
@@ -64,5 +74,6 @@ model.fit(x_train, y_train, batch_size=128, epochs=12, verbose=1, validation_dat
 ```
 
 Result
+
 ![result2](./result/result.PNG)
 
