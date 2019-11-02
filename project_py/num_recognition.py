@@ -1,8 +1,8 @@
+import numpy as np
 from keras.models import load_model
 model = load_model("./models/mnist_0.h5")
 
-import numpy as np
-
+Debug = False
 
 def set_image():
 
@@ -12,7 +12,6 @@ def set_image():
 
     path = './cell_data\\'
     filenames = glob.glob(path + '*.png')
-
     num_coords = []
 
     if len(filenames) == 0:
@@ -25,9 +24,11 @@ def set_image():
 
     for fname in filenames:
         #이미지 경로에서 수도쿠 판에서의 좌표가 될 숫자들만 추출
-        temp = fname[-7:-4]
-        temp = str(temp).replace('_', '')
+        temp = fname[-6:-4]
         num_coords.append(temp)
+
+        if Debug:
+            print(temp)
 
         #이미지 읽기
         image = cv2.imread(fname, cv2.IMREAD_GRAYSCALE)
@@ -64,13 +65,17 @@ def dict_reshape(coord_pred):
 
 
 
-def predict():
+def predict(is_debug):
+    global Debug
+    Debug = is_debug
+    
     #   이미지를 불러오고 인식을 위한 처리
     images, num_coords = set_image()
     images = np.array(images)
     #   딥러닝 모델로 숫자 예측
     y_pred = model.predict(images)
     coord_pred = {}
+    
     print('predictions: ', end='')
     for i in range(0, len(y_pred)):
         print(np.argmax(y_pred[i]), end='  ')
