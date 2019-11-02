@@ -1,10 +1,68 @@
 # Sudoku
-sudoku solving program based on keras and opencv
-라이브러리 opencv를 이용하여 스도쿠 이미지를 검출하고 검출된 스도쿠판의 각 cross점을 분석하여 셀을 분리, 분리된 셀에서 숫자가 있는지를 검사후 이진화하여 흑백의 이미지로 저장, 저장된 이미지는 tensorflow에서 숫자의 이미지를 softmax를 이용해 분류된 숫자를 이용해 스도쿠를 처리하는 프로젝트입니다.
+Children, did you guys get sick of solving Sudoku problems at school?
+This project helps you solve it by uploading Sudoku image.
 
-인터넷에서 저장한 수도쿠 이미지
-<img src="https://user-images.githubusercontent.com/26996823/67270618-fec40400-f4f3-11e9-972b-4b9c10f005db.png" width="90%"></img>
+![result](./result/result.PNG)
 
-결과 이미지
-<img src="https://user-images.githubusercontent.com/26996823/67270785-49de1700-f4f4-11e9-8768-37af64a38ff0.png" width="90%"></img>
+# Dependency
+- Python 3
+- Opencv
+- Keras
+- Numpy
+- Matplotlib
+
+# Features
+
+Input Image
+![out0](./result/0.jpg)
+
+After MorphologyEx
+![out1](./result/1.PNG)
+
+After Normalization
+![out2](./result/2.PNG)
+
+Adaptive Threshold
+![out3](./result/3.PNG)
+
+Find Contours
+![out4](./result/4.PNG)
+
+Masked
+![out5](./result/5.PNG)
+
+Find grid by using Sobel, MorphologyEx and find Contours
+![out6](./result/6.PNG)
+![out7](./result/7.PNG)
+
+Flatten Image by using warpPerspective()
+![out8](./result/8.PNG)
+![out9](./result/9.PNG)
+
+Crop Cell Numbers
+![out10](./result/10.PNG)
+
+Model
+```python
+model = Sequential()
+model.add(Conv2D(32, kernel_size=(3, 3),activation='relu',input_shape=(shape, shape, channel)))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+model.add(Flatten())
+model.add(Dense(128, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(num_classes, activation='softmax'))
+
+
+#   학습 방법 설정
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+#   학습 시작
+model.fit(x_train, y_train, batch_size=128, epochs=12, verbose=1, validation_data=(x_test, y_test))
+```
+
+Result
+![result2](./result/result.PNG)
 
