@@ -1,5 +1,6 @@
 # Sudoku
-Children, did you guys get sick of solving Sudoku problems at school?
+Did you every get sick of solving Sudoku problems at school?
+
 This project helps you solve it by uploading Sudoku image.
 
 ![result](./result/result.PNG)
